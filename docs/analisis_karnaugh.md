@@ -156,3 +156,74 @@ $$v = \bar{a}b + bd + c\bar{d}$$
 
 - **Número de términos producto:** 3.
 - **Número de literales:** $3 + 2 + 3 = 7$ literales.
+
+## 5. Implementación a Nivel de Compuertas Lógicas
+
+A partir de las ecuaciones mínimas SOP deducidas:
+
+### Circuito para $u(a,b,c,d) = ab + ac + \bar{c}d$
+- **Inversores (NOT):** 1 compuerta para generar $\bar{c}$.
+- **Compuertas AND de 2 entradas:** 3 compuertas:
+  - $T_{u1} = a \cdot b$
+  - $T_{u2} = a \cdot c$
+  - $T_{u3} = \bar{c} \cdot d$
+- **Compuerta OR de 3 entradas:** 1 compuerta:
+  - $u = T_{u1} + T_{u2} + T_{u3}$
+- **Total de compuertas para $u$:** 1 NOT + 3 AND-2 + 1 OR-3 = **5 compuertas**.
+
+```
+a ──────┬─────────┐ (AND)
+b ──────┼────┐    ├── Tu1 ──┐
+        │    │    │         │
+a ──────┴────┼────┤ (AND)   │
+c ──────┬────┼────┤── Tu2 ──┼──┐ (OR)
+        │    │    │         │  ├── u
+c ──[NOT]──┐ │    │         │  │
+d ─────────┴─┴────┤ (AND)   │  │
+                  └── Tu3 ──┘──┘
+```
+
+### Circuito para $v(a,b,c,d) = \bar{a}b + bd + c\bar{d}$
+- **Inversores (NOT):** 2 compuertas para generar $\bar{a}$ y $\bar{d}$.
+- **Compuertas AND de 2 entradas:** 3 compuertas:
+  - $T_{v1} = \bar{a} \cdot b$
+  - $T_{v2} = b \cdot d$
+  - $T_{v3} = c \cdot \bar{d}$
+- **Compuerta OR de 3 entradas:** 1 compuerta:
+  - $v = T_{v1} + T_{v2} + T_{v3}$
+- **Total de compuertas para $v$:** 2 NOT + 3 AND-2 + 1 OR-3 = **6 compuertas**.
+
+```
+a ──[NOT]──┬──────┐ (AND)
+b ─────────┼───┐  ├── Tv1 ──┐
+           │   │  │         │
+b ─────────┴───┼──┤ (AND)   │
+d ─────────┬───┼──┤── Tv2 ──┼──┐ (OR)
+           │   │  │         │  ├── v
+c ─────────┼───┴──┤ (AND)   │  │
+d ──[NOT]──┴──────┤── Tv3 ──┘──┘
+```
+
+---
+
+## 6. Respuestas a las Preguntas Teóricas del Mandato
+
+### Pregunta 1: ¿Cuántos términos producto tiene la expresión SOP mínima de cada función?
+- La función $u(a, b, c, d)$ tiene **3 términos producto**: $ab$, $ac$ y $\bar{c}d$.
+- La función $v(a, b, c, d)$ tiene **3 términos producto**: $\bar{a}b$, $bd$ y $c\bar{d}$.
+
+### Pregunta 2: ¿Cuántos literales tiene la expresión SOP mínima en total?
+- Para la función $u$:
+  - $ab$ (2 literales) + $ac$ (2 literales) + $\bar{c}d$ (3 literales) = **7 literales**.
+- Para la función $v$:
+  - $\bar{a}b$ (3 literales) + $bd$ (2 literales) + $c\bar{d}$ (3 literales) = **7 literales**.
+- **Total combinado:** $7 + 7 = \mathbf{14\ \text{literales}}$.
+
+### Pregunta 3: ¿Qué combinación de control $\{v, u\}$ se activa con mayor frecuencia sobre los 16 minitérminos?
+Analizando la distribución sobre los 16 minitérminos posibles:
+- **`{v, u} = 2'b00` (XOR):** 3 minitérminos ($m_0, m_3, m_8$) $\rightarrow 18.75\%$
+- **`{v, u} = 2'b01` (SUMA):** 4 minitérminos ($m_1, m_9, m_{11}, m_{12}$) $\rightarrow 25.00\%$
+- **`{v, u} = 2'b10` (MAYOR):** 4 minitérminos ($m_2, m_4, m_6, m_7$) $\rightarrow 25.00\%$
+- **`{v, u} = 2'b11` (RESTA):** 5 minitérminos ($m_5, m_{10}, m_{13}, m_{14}, m_{15}$) $\rightarrow 31.25\%$
+
+**Respuesta:** La combinación de control con mayor frecuencia es **`{v, u} = 2'b11` (operación RESTA)**, la cual se activa en **5 de las 16 combinaciones** ($31.25\%$ del espacio total).
