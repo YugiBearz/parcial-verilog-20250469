@@ -103,3 +103,56 @@ $$u = ab + ac + \bar{c}d$$
 
 - **Número de términos producto:** 3.
 - **Número de literales:** $2 + 2 + 3 = 7$ literales.
+
+## 4. Mapa de Karnaugh y Minimización para la Función $v(a, b, c, d)$
+
+La función de control $v$ está definida por el conjunto de 9 minitérminos:
+$$v(a,b,c,d) = \sum m(2, 4, 5, 6, 7, 10, 13, 14, 15)$$
+
+### Rejilla del Mapa de Karnaugh (4x4 en Código Gray)
+
+Las filas representan las combinaciones de $(a, b)$ y las columnas $(c, d)$:
+
+```
+           cd
+  v      00   01   11   10
+      +----+----+----+----+
+   00 |  0 |  0 |  0 |  1 |   m0,  m1,  m3,  m2
+      +----+----+----+----+
+   01 |  1 |  1 |  1 |  1 |   m4,  m5,  m7,  m6
+ab    +----+----+----+----+
+   11 |  0 |  1 |  1 |  1 |   m12, m13, m15, m14
+      +----+----+----+----+
+   10 |  0 |  0 |  0 |  1 |   m8,  m9,  m11, m10
+      +----+----+----+----+
+```
+
+### Identificación de Grupos e Implicantes Primos Esenciales (EPI)
+
+Para agrupar los 9 unos optimizando el tamaño de los lazos:
+
+1. **Grupo 1 — Fila completa $ab = 01$ (4 celdas):**
+   - **Celdas:** $m_4, m_5, m_7, m_6$.
+   - **Variables invariantes:** $a = 0, b = 1$; las variables $c$ y $d$ recorren todas sus combinaciones.
+   - **Término producto:** $\bar{a}b$.
+   - **Esencialidad:** El minitérmino $m_4$ es cubierto de forma exclusiva por este grupo, convirtiendo a $\bar{a}b$ en un **Implicante Primo Esencial**.
+
+2. **Grupo 2 — Bloque $2 \times 2$ en filas $\{01, 11\}$ y columnas $\{01, 11\}$ (4 celdas):**
+   - **Celdas:** $m_5, m_7, m_{13}, m_{15}$.
+   - **Variables invariantes:** $b = 1, d = 1$; las variables $a$ y $c$ cambian entre 0 y 1.
+   - **Término producto:** $bd$.
+   - **Esencialidad:** El minitérmino $m_{13}$ solo está cubierto por este lazo, por lo que $bd$ es un **Implicante Primo Esencial**.
+
+3. **Grupo 3 — Columna completa $cd = 10$ (4 celdas):**
+   - **Celdas:** $m_2, m_6, m_{14}, m_{10}$.
+   - **Variables invariantes:** $c = 1, d = 0$; las variables $a$ y $b$ recorren todas sus combinaciones.
+   - **Término producto:** $c\bar{d}$.
+   - **Esencialidad:** Los minitérminos $m_2$ y $m_{10}$ únicamente están contenidos en esta columna, haciendo que $c\bar{d}$ sea un **Implicante Primo Esencial**.
+
+### Expresión Mínima Suma de Productos (SOP)
+
+La unión de los 3 implicantes primos esenciales cubre de forma exacta y mínima los 9 minitérminos:
+$$v = \bar{a}b + bd + c\bar{d}$$
+
+- **Número de términos producto:** 3.
+- **Número de literales:** $3 + 2 + 3 = 7$ literales.
