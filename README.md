@@ -27,5 +27,5 @@ Diseño, implementación y verificación en Verilog 2001 de una unidad digital q
 - [x] Paso 01-03: Estructura del proyecto y configuración de control de versiones.
 - [x] Fase 1: Tablas de verdad y mapas de Karnaugh.
 - [x] Fase 2: Implementación de módulos RTL (`control_logic`, `datapath`, `result_register`).
-- [ ] Fase 3: Integración de simulación (`top_20250469`) y testbench exhaustivo (4096 vectores + 12 temporales).
+- [x] Fase 3: Integración de simulación (`top_20250469`) y testbench exhaustivo (4096 vectores + 12 temporales).
 - [ ] Fase 4: Adaptador físico para Tang Primer 25K (`tang_top_20250469`), CST y SDC.
