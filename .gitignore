@@ -1,0 +1,16 @@
+# Salidas de compilacion y temporales de simulacion
+build/
+impl/
+sim/*.vcd
+sim/*.vvp
+sim/*.out
+sim/*.log
+*.o
+*.obj
+a.out
+
+# Temporales de Gowin EDA y del sistema
+*.gprj.user
+*.bak
+.DS_Store
+Thumbs.db
