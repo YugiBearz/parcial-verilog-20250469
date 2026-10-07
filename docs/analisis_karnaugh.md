@@ -50,3 +50,56 @@ A continuación se detalla la tabla de verdad para todas las combinaciones posib
 | 13  |  1  |  1  |  0  |  1  |  1  |  1  |    `11`    | RESTA                  | $Y = (A - B)[3:0]$, `flag` = préstamo ($A < B$) |
 | 14  |  1  |  1  |  1  |  0  |  1  |  1  |    `11`    | RESTA                  | $Y = (A - B)[3:0]$, `flag` = préstamo ($A < B$) |
 | 15  |  1  |  1  |  1  |  1  |  1  |  1  |    `11`    | RESTA                  | $Y = (A - B)[3:0]$, `flag` = préstamo ($A < B$) |
+
+## 3. Mapa de Karnaugh y Minimización para la Función $u(a, b, c, d)$
+
+La función de control $u$ está definida por el conjunto de 9 minitérminos:
+$$u(a,b,c,d) = \sum m(1, 5, 9, 10, 11, 12, 13, 14, 15)$$
+
+### Rejilla del Mapa de Karnaugh (4x4 en Código Gray)
+
+Las filas representan las combinaciones de $(a, b)$ y las columnas $(c, d)$:
+
+```
+           cd
+  u      00   01   11   10
+      +----+----+----+----+
+   00 |  0 |  1 |  0 |  0 |   m0,  m1,  m3,  m2
+      +----+----+----+----+
+   01 |  0 |  1 |  0 |  0 |   m4,  m5,  m7,  m6
+ab    +----+----+----+----+
+   11 |  1 |  1 |  1 |  1 |   m12, m13, m15, m14
+      +----+----+----+----+
+   10 |  0 |  1 |  1 |  1 |   m8,  m9,  m11, m10
+      +----+----+----+----+
+```
+
+### Identificación de Grupos e Implicantes Primos Esenciales (EPI)
+
+Para cubrir los 9 unos con el número mínimo de términos de mayor tamaño posible (potencias de 2):
+
+1. **Grupo 1 — Fila completa $ab = 11$ (4 celdas):**
+   - **Celdas:** $m_{12}, m_{13}, m_{15}, m_{14}$.
+   - **Variables invariantes:** $a = 1, b = 1$; las variables $c$ y $d$ cambian en todas sus combinaciones.
+   - **Término producto:** $ab$.
+   - **Esencialidad:** El minitérmino $m_{12}$ solo pertenece a este grupo, lo que hace que $ab$ sea un **Implicante Primo Esencial**.
+
+2. **Grupo 2 — Bloque $2 \times 2$ en filas $\{11, 10\}$ y columnas $\{11, 10\}$ (4 celdas):**
+   - **Celdas:** $m_{15}, m_{14}, m_{11}, m_{10}$.
+   - **Variables invariantes:** $a = 1, c = 1$; las variables $b$ y $d$ alternan entre 0 y 1.
+   - **Término producto:** $ac$.
+   - **Esencialidad:** El minitérmino $m_{10}$ solo está cubierto por este bloque, haciendo que $ac$ sea un **Implicante Primo Esencial**.
+
+3. **Grupo 3 — Columna completa $cd = 01$ (4 celdas):**
+   - **Celdas:** $m_1, m_5, m_{13}, m_9$.
+   - **Variables invariantes:** $c = 0, d = 1$; las variables $a$ y $b$ varían a lo largo de las 4 filas.
+   - **Término producto:** $\bar{c}d$.
+   - **Esencialidad:** Los minitérminos $m_1$ y $m_5$ solo pueden ser cubiertos por esta columna, haciendo que $\bar{c}d$ sea un **Implicante Primo Esencial**.
+
+### Expresión Mínima Suma de Productos (SOP)
+
+Todos los 9 minitérminos quedan cubiertos por los 3 implicantes primos esenciales:
+$$u = ab + ac + \bar{c}d$$
+
+- **Número de términos producto:** 3.
+- **Número de literales:** $2 + 2 + 3 = 7$ literales.
