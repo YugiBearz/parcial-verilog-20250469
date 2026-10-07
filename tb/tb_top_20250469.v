@@ -117,7 +117,77 @@ module tb_top_20250469;
         end
     endfunction
 
-    // Bloque inicial temporal para inicializacion de señales
+    // Tarea: Barrido Exhaustivo de 4096 Vectores (16 controles x 16 A x 16 B)
+    task run_exhaustive_test;
+        integer idx_m;
+        integer val_A;
+        integer val_B;
+        reg exp_u_val;
+        reg exp_v_val;
+        reg [3:0] exp_Y_val;
+        reg exp_flag_val;
+        begin
+            $display("====================================================================");
+            $display("[TB] INICIANDO BARRIDO EXHAUSTIVO DE 4096 VECTORES COMBINACIONALES");
+            $display("====================================================================");
+
+            en = 1'b1; // Habilitador activo para verificar captura en cada ciclo
+
+            for (idx_m = 0; idx_m < 16; idx_m = idx_m + 1) begin
+                a = idx_m[3];
+                b = idx_m[2];
+                c = idx_m[1];
+                d = idx_m[0];
+
+                for (val_A = 0; val_A < 16; val_A = val_A + 1) begin
+                    A = val_A[3:0];
+
+                    for (val_B = 0; val_B < 16; val_B = val_B + 1) begin
+                        B = val_B[3:0];
+
+                        // Espera breve para propagacion combinacional antes del flanco de reloj
+                        #2;
+
+                        exp_u_val    = expected_u(a, b, c, d);
+                        exp_v_val    = expected_v(a, b, c, d);
+                        exp_Y_val    = expected_Y(exp_u_val, exp_v_val, A, B);
+                        exp_flag_val = expected_flag(exp_u_val, exp_v_val, A, B);
+
+                        // 1. Verificacion combinacional de u y v
+                        if (u !== exp_u_val || v !== exp_v_val) begin
+                            $display("[ERROR COMB] m=%0d (abcd=%b%b%b%b) -> Esperado u=%b,v=%b | Obtenido u=%b,v=%b",
+                                     idx_m, a, b, c, d, exp_u_val, exp_v_val, u, v);
+                            errors_comb = errors_comb + 1;
+                        end
+
+                        // 2. Verificacion combinacional del datapath (Y, flag_comb)
+                        if (Y !== exp_Y_val || flag_comb !== exp_flag_val) begin
+                            $display("[ERROR DATAPATH] {v,u}=%b%b, A=%0d, B=%0d -> Esperado Y=%0d,flag=%b | Obtenido Y=%0d,flag=%b",
+                                     v, u, A, B, exp_Y_val, exp_flag_val, Y, flag_comb);
+                            errors_comb = errors_comb + 1;
+                        end
+
+                        // 3. Flanco de reloj para evaluar la captura en el registro
+                        @(posedge clk);
+                        #1; // Margen post-flanco
+
+                        if (Q !== exp_Y_val || flag_q !== exp_flag_val) begin
+                            $display("[ERROR SEQ] {v,u}=%b%b, A=%0d, B=%0d -> Esperado Q=%0d,flag_q=%b | Obtenido Q=%0d,flag_q=%b",
+                                     v, u, A, B, exp_Y_val, exp_flag_val, Q, flag_q);
+                            errors_seq = errors_seq + 1;
+                        end
+
+                        vector_count = vector_count + 1;
+                    end
+                end
+            end
+
+            $display("[TB] BARRIDO EXHAUSTIVO FINALIZADO: %0d vectores probados.", vector_count);
+            $display("[TB] Errores combinacionales: %0d | Errores secuenciales: %0d", errors_comb, errors_seq);
+        end
+    endtask
+
+    // Bloque inicial principal
     initial begin
         clk             = 1'b0;
         rst             = 1'b1;
@@ -133,8 +203,13 @@ module tb_top_20250469;
         errors_temporal = 0;
         vector_count    = 0;
 
-        #35 rst = 1'b0; // Desasercion asincrona inicial
+        #35;
+        rst = 1'b0; // Desasercion asincrona inicial
+        #15;
+
+        run_exhaustive_test();
     end
 
 endmodule
 /* verilator lint_on SIMILARNAME */
+
