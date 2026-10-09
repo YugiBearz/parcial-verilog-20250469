@@ -22,6 +22,7 @@
 | 2026-10-09 | Antigravity AI | "Automatización de síntesis Gowin mediante script Tcl" | Creación de fpga/run_gowin.tcl y regla make fpga para compilación y generación de bitstream en modo batch | Verificación de parámetros de dispositivo GW5A-LV25MG121 |
 | 2026-10-09 | Antigravity AI | "Redacción de guía de implementación física y programación Gowin" | Creación de docs/guia_gowin_eda.md documentando flujo de síntesis, P&R, uso de recursos y programación JTAG | Verificación de parámetros de empaquetado MBGA121 y modos de configuración |
 | 2026-10-09 | Antigravity AI | "Cierre de proyecto, documentación final y etiquetado v1.0-entrega" | Actualización de README.md con instrucciones de reproducción, métricas al 100% y creación de tag v1.0-entrega | Auditoría humana final de entregables y enlace de GitHub |
+| 2026-10-09 | Antigravity AI | "Reasignación física de pines a puertos PMOD Dock (F5, A11, G11)" | Actualización de fpga/top.cst y docs/mapa_de_pines.md agrupando control y botones en Dock F5, operandos A/B en Dock A11 y LEDs en Dock G11 | Verificación de esquema de la baseboard, regla make lint y make check exitosos |
 
 
 

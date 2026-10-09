@@ -19,35 +19,55 @@ Para garantizar la integridad de las señales y evitar estados indeterminados po
 
 ---
 
-## 2. Tabla de Asignación de Pines (Pinout Oficial)
+## 2. Tabla de Asignación de Pines por Conector / Dock PMOD
 
-| Puerto RTL | Pin Físico | Dirección | Estándar I/O | Polarización / Drive | Componente Físico en Placa | Descripción Funcional |
-| :--- | :---: | :---: | :---: | :---: | :--- | :--- |
-| `sys_clk` | `E2` | Entrada | LVCMOS33 | Ninguna | Cristal Oscilador 50 MHz | Señal de reloj maestra del sistema (periodo 20.0 ns). |
-| `btn_rst_n` | `H11` | Entrada | LVCMOS33 | Pull-up (`UP`) | Pulsador S1 (KEY1) | Reset asíncrono del sistema (activo en bajo, $0 = \text{Reset}$). |
-| `btn_en` | `H10` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | Pulsador S2 (KEY2) | Habilitador de captura del registro (nivel alto). |
-| `sw_ctrl[3]` | `K5` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW1-4 (`a`) | Variable de control $a$ (MSB de selector). |
-| `sw_ctrl[2]` | `L5` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW1-3 (`b`) | Variable de control $b$. |
-| `sw_ctrl[1]` | `J5` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW1-2 (`c`) | Variable de control $c$. |
-| `sw_ctrl[0]` | `G5` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW1-1 (`d`) | Variable de control $d$ (LSB de selector). |
-| `sw_A[3]` | `F5` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW2-4 ($A_3$) | Bit 3 del operando A (MSB). |
-| `sw_A[2]` | `G7` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW2-3 ($A_2$) | Bit 2 del operando A. |
-| `sw_A[1]` | `F7` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW2-2 ($A_1$) | Bit 1 del operando A. |
-| `sw_A[0]` | `D7` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW2-1 ($A_0$) | Bit 0 del operando A (LSB). |
-| `sw_B[3]` | `E8` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW3-4 ($B_3$) | Bit 3 del operando B (MSB). |
-| `sw_B[2]` | `D8` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW3-3 ($B_2$) | Bit 2 del operando B. |
-| `sw_B[1]` | `C8` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW3-2 ($B_1$) | Bit 1 del operando B. |
-| `sw_B[0]` | `B8` | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW3-1 ($B_0$) | Bit 0 del operando B (LSB). |
-| `led_Q[3]` | `L10` | Salida | LVCMOS33 | Drive 8mA | Diodo LED D4 ($Q_3$) | Bit 3 del resultado registrado $Q$. |
-| `led_Q[2]` | `K10` | Salida | LVCMOS33 | Drive 8mA | Diodo LED D3 ($Q_2$) | Bit 2 del resultado registrado $Q$. |
-| `led_Q[1]` | `J11` | Salida | LVCMOS33 | Drive 8mA | Diodo LED D2 ($Q_1$) | Bit 1 del resultado registrado $Q$. |
-| `led_Q[0]` | `G11` | Salida | LVCMOS33 | Drive 8mA | Diodo LED D1 ($Q_0$) | Bit 0 del resultado registrado $Q$. |
-| `led_flag` | `L11` | Salida | LVCMOS33 | Drive 8mA | Diodo LED D5 (`flag_q`) | Bandera registrada de la operación activa. |
-| `led_u` | `K11` | Salida | LVCMOS33 | Drive 8mA | Diodo LED D6 (`u`) | Indicador en tiempo real de señal de control $u$. |
-| `led_v` | `E10` | Salida | LVCMOS33 | Drive 8mA | Diodo LED D7 (`v`) | Indicador en tiempo real de señal de control $v$. |
+Las entradas y salidas del sistema se encuentran agrupadas físicamente en los tres conectores PMOD (2×6 pines) de la placa base (Dock) de la Sipeed Tang Primer 25K:
+- **Dock F5 (PMOD 2):** Switches de control `sw_ctrl[3:0]` (`a, b, c, d`) + 2 Pulsadores (`btn_rst_n` y `btn_en`).
+- **Dock A11 (PMOD 0):** Switches de datos `sw_A[3:0]` y `sw_B[3:0]`.
+- **Dock G11 (PMOD 1):** Salidas a LEDs `led_Q[3:0]`, `led_flag`, `led_u` y `led_v`.
+
+| Puerto RTL | Pin Físico | Conector Dock | Pin Header | Dirección | Estándar I/O | Polarización / Drive | Componente Externo / Placa | Descripción Funcional |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- | :--- | :--- |
+| `sys_clk` | `E2` | Onboard | N/A | Entrada | LVCMOS33 | Ninguna | Cristal Oscilador 50 MHz | Señal de reloj maestra del sistema (periodo 20.0 ns). |
+| `sw_ctrl[3]` | `H8` | **Dock F5** | Pin 1 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-4 (`a`) | Variable de control $a$ (MSB de selector). |
+| `sw_ctrl[2]` | `H7` | **Dock F5** | Pin 2 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-3 (`b`) | Variable de control $b$. |
+| `sw_ctrl[1]` | `G7` | **Dock F5** | Pin 3 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-2 (`c`) | Variable de control $c$. |
+| `sw_ctrl[0]` | `G8` | **Dock F5** | Pin 4 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-1 (`d`) | Variable de control $d$ (LSB de selector). |
+| `btn_rst_n` | `H5` | **Dock F5** | Pin 7 | Entrada | LVCMOS33 | Pull-up (`UP`) | Pulsador Reset (KEY1) | Reset asíncrono del sistema (activo en bajo, $0 = \text{Reset}$). |
+| `btn_en` | `J5` | **Dock F5** | Pin 8 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | Pulsador / Switch Enable (KEY2) | Habilitador de captura del registro (nivel alto). |
+| `sw_A[3]` | `B11` | **Dock A11** | Pin 1 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-4 ($A_3$) | Bit 3 del operando A (MSB). |
+| `sw_A[2]` | `B10` | **Dock A11** | Pin 2 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-3 ($A_2$) | Bit 2 del operando A. |
+| `sw_A[1]` | `D11` | **Dock A11** | Pin 3 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-2 ($A_1$) | Bit 1 del operando A. |
+| `sw_A[0]` | `D10` | **Dock A11** | Pin 4 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-1 ($A_0$) | Bit 0 del operando A (LSB). |
+| `sw_B[3]` | `C11` | **Dock A11** | Pin 7 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-4 ($B_3$) | Bit 3 del operando B (MSB). |
+| `sw_B[2]` | `C10` | **Dock A11** | Pin 8 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-3 ($B_2$) | Bit 2 del operando B. |
+| `sw_B[1]` | `A11` | **Dock A11** | Pin 9 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-2 ($B_1$) | Bit 1 del operando B. |
+| `sw_B[0]` | `A10` | **Dock A11** | Pin 10 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-1 ($B_0$) | Bit 0 del operando B (LSB). |
+| `led_Q[3]` | `K11` | **Dock G11** | Pin 1 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q3 | Bit 3 del resultado registrado $Q$. |
+| `led_Q[2]` | `L11` | **Dock G11** | Pin 2 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q2 | Bit 2 del resultado registrado $Q$. |
+| `led_Q[1]` | `E11` | **Dock G11** | Pin 3 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q1 | Bit 1 del resultado registrado $Q$. |
+| `led_Q[0]` | `E10` | **Dock G11** | Pin 4 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q0 | Bit 0 del resultado registrado $Q$. |
+| `led_flag` | `G11` | **Dock G11** | Pin 7 | Salida | LVCMOS33 | Drive 8mA | Diodo LED FLAG | Bandera registrada de la operación activa. |
+| `led_u` | `G10` | **Dock G11** | Pin 8 | Salida | LVCMOS33 | Drive 8mA | Diodo LED U | Indicador en tiempo real de señal de control $u$. |
+| `led_v` | `L5` | **Dock G11** | Pin 9 | Salida | LVCMOS33 | Drive 8mA | Diodo LED V | Indicador en tiempo real de señal de control $v$. |
 
 ---
 
-## 3. Consideraciones Eléctricas de la Tang Primer 25K
+## 3. Disposición de Pines en Conectores PMOD (Vista Frontal del Header)
+
+Cada conector PMOD en el Dock posee 12 pines distribuidos en dos filas de 6 pines (paso 2.54 mm):
+
+```text
+       Fila Superior (Pines 1 a 6)     Fila Inferior (Pines 7 a 12)
+       [ 1 ] [ 2 ] [ 3 ] [ 4 ] [GND] [3V3]   <-- Pines 1, 2, 3, 4, 5 (GND), 6 (VCC)
+       [ 7 ] [ 8 ] [ 9 ] [10 ] [GND] [3V3]   <-- Pines 7, 8, 9, 10, 11 (GND), 12 (VCC)
+```
+
+- **Alimentación Común:** Los pines 6 y 12 entregan 3.3V (`VCC`); los pines 5 y 11 son masa (`GND`).
+- **Conexión a Protoboard:** Llevar cables Dupont hembra-macho desde cada conector hacia los buses de alimentación y líneas de señal en la protoboard.
+
+---
+
+## 4. Consideraciones Eléctricas de la Tang Primer 25K
 - **Tensión de Banco:** Todos los bancos donde residen estos pines están alimentados a VCCIO = 3.3V.
 - **Inversión de Lógica en Botones:** El pulsador físico conecta el pin a masa cuando se oprime; el módulo `tang_top_20250469` invierte esta señal mediante `assign rst_raw = ~btn_rst_n;` para entregar una lógica positiva limpia y predecible al núcleo síncrono.

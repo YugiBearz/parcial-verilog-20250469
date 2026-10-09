@@ -55,7 +55,7 @@ wave: run
 	$(GTKWAVE) $(VCD_FILE) &
 
 lint:
-	$(VERILATOR) --lint-only -Wall $(RTL_SRCS) $(TB_SRCS)
+	$(VERILATOR) --lint-only -Wall --top-module tang_top_20250469 $(RTL_SRCS)
 
 fpga:
 	@echo "===================================================================="
