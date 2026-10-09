@@ -16,6 +16,8 @@
 | 2026-10-08 | Antigravity AI | "Verificación de latencia y propagación de sync2ff" | Creación y ejecución de tb_sync2ff.v confirmando latencia exacta de 2 ciclos e inmunidad asíncrona | Verificación de formas de onda y paso de pruebas unitarias |
 | 2026-10-08 | Antigravity AI | "Definición de puertos e interfaz física de tang_top_20250469" | Especificación de puertos físicos para Tang Primer 25K con inversión de pulsador activo en bajo y cableado interno | Validación de polaridades y nomenclatura de pines |
 | 2026-10-08 | Antigravity AI | "Integración de sincronizadores 2FF y núcleo top en adaptador físico" | Conexión de 8 instancias sync2ff para 13 canales de entrada asíncrona hacia top_20250469 y mapeo a LEDs | Verificación de jerarquía estructural completa con linter Verilator |
+| 2026-10-08 | Antigravity AI | "Reorganización de estructura de directorios según especificación oficial" | Migración a src/, sim/, fpga/, evidencias/ con actualización de Makefile y plantilla de evidencias | Validación de árbol de directorios con el mandato oficial del profesor |
+
 
 
 

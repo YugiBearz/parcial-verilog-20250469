@@ -29,3 +29,15 @@ Diseño, implementación y verificación en Verilog 2001 de una unidad digital q
 - [x] Fase 2: Implementación de módulos RTL (`control_logic`, `datapath`, `result_register`).
 - [x] Fase 3: Integración de simulación (`top_20250469`) y testbench exhaustivo (4096 vectores + 12 temporales).
 - [ ] Fase 4: Adaptador físico para Tang Primer 25K (`tang_top_20250469`), CST y SDC.
+
+---
+
+### Organización del Repositorio
+- `src/`: Módulos RTL en Verilog 2001 (`control_logic.v`, `datapath.v`, `result_register.v`, `top_20250469.v`, `sync2ff.v`, `tang_top_20250469.v`).
+- `sim/`: Bancos de prueba (`tb_top_20250469.v`, `tb_sync2ff.v`) y registro de resultados de simulación.
+- `docs/`: Análisis teórico, mapas de Karnaugh, tablas de verdad y esquemáticos (`analisis_karnaugh.md`).
+- `fpga/`: Restricciones físicas (`top.cst`), temporización (`top.sdc`) y scripts para Gowin EDA.
+- `evidencias/`: Fotografías de la placa y enlace al video demostrativo.
+- `README.md`: Identificación, estado del proyecto e instrucciones de reproducción.
+- `.gitignore`: Exclusión de artefactos compilados y temporales.
+

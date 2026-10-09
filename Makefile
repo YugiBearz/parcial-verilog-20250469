@@ -9,18 +9,22 @@ VVP      = vvp
 VERILATOR= verilator
 GTKWAVE  = gtkwave
 
-RTL_SRCS = rtl/control_logic.v \
-           rtl/datapath.v \
-           rtl/result_register.v \
-           rtl/top_20250469.v
+RTL_SRCS = src/control_logic.v \
+           src/datapath.v \
+           src/result_register.v \
+           src/top_20250469.v \
+           src/sync2ff.v \
+           src/tang_top_20250469.v
 
-TB_SRCS  = tb/tb_top_20250469.v
+TB_SRCS  = sim/tb_top_20250469.v
+TB_SYNC  = sim/tb_sync2ff.v
 
 SIM_DIR  = sim
 SIM_BIN  = $(SIM_DIR)/sim_top_20250469
+SIM_SYNC = $(SIM_DIR)/sim_sync2ff
 VCD_FILE = $(SIM_DIR)/top_20250469.vcd
 
-.PHONY: all check compile run wave lint clean
+.PHONY: all check check-sync compile run wave lint clean
 
 all: check
 
@@ -28,7 +32,14 @@ compile: $(SIM_BIN)
 
 $(SIM_BIN): $(RTL_SRCS) $(TB_SRCS)
 	@mkdir -p $(SIM_DIR)
-	$(IVERILOG) -g2001 -Wall -o $(SIM_BIN) $(RTL_SRCS) $(TB_SRCS)
+	$(IVERILOG) -g2001 -Wall -o $(SIM_BIN) src/control_logic.v src/datapath.v src/result_register.v src/top_20250469.v $(TB_SRCS)
+
+$(SIM_SYNC): src/sync2ff.v $(TB_SYNC)
+	@mkdir -p $(SIM_DIR)
+	$(IVERILOG) -g2001 -Wall -o $(SIM_SYNC) src/sync2ff.v $(TB_SYNC)
+
+check-sync: $(SIM_SYNC)
+	$(VVP) $(SIM_SYNC)
 
 run: $(SIM_BIN)
 	$(VVP) $(SIM_BIN)
@@ -46,4 +57,4 @@ lint:
 	$(VERILATOR) --lint-only -Wall $(RTL_SRCS) $(TB_SRCS)
 
 clean:
-	rm -rf $(SIM_DIR)/*.vvp $(SIM_DIR)/*.vcd $(SIM_DIR)/sim_top_* build/*
+	rm -rf $(SIM_DIR)/*.vvp $(SIM_DIR)/*.vcd $(SIM_DIR)/sim_top_* $(SIM_DIR)/sim_sync* build/*
