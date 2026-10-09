@@ -19,9 +19,9 @@ IO_LOC "btn_en" F5;
 IO_PORT "btn_en" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
 // Switches de control: sw_ctrl[3:0] = {a, b, c, d} (Dock F5)
-IO_LOC "sw_ctrl[3]" H5;
+IO_LOC "sw_ctrl[3]" H8;
 IO_PORT "sw_ctrl[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
-IO_LOC "sw_ctrl[2]" H8;
+IO_LOC "sw_ctrl[2]" H7;
 IO_PORT "sw_ctrl[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 IO_LOC "sw_ctrl[1]" G7;
 IO_PORT "sw_ctrl[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;

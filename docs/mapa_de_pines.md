@@ -29,8 +29,8 @@ Las entradas y salidas del sistema se encuentran agrupadas físicamente en los t
 | Puerto RTL | Pin Físico | Conector Dock | Posición Fila / Serigrafía | Dirección | Estándar I/O | Polarización / Drive | Componente Externo / Placa | Descripción Funcional |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- | :--- | :--- |
 | `sys_clk` | `E2` | Onboard | N/A | Entrada | LVCMOS33 | Ninguna | Cristal Oscilador 50 MHz | Señal de reloj maestra del sistema (periodo 20.0 ns). |
-| `sw_ctrl[3]` | `H5` | **Dock F5** | Top, Pin 4 (`H5`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 3 (`a`) | Variable de control $a$ (MSB de selector). |
-| `sw_ctrl[2]` | `H8` | **Dock F5** | Top, Pin 3 (`H8`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 2 (`b`) | Variable de control $b$. |
+| `sw_ctrl[3]` | `H8` | **Dock F5** | Top, Pin 3 (`H8`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 3 (`a`) | Variable de control $a$ (MSB de selector). |
+| `sw_ctrl[2]` | `H7` | **Dock F5** | Bottom, Pin 3 (`H7`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 2 (`b`) | Variable de control $b$. |
 | `sw_ctrl[1]` | `G7` | **Dock F5** | Top, Pin 2 (`G7`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 1 (`c`) | Variable de control $c$. |
 | `sw_ctrl[0]` | `G8` | **Dock F5** | Bottom, Pin 2 (`G8`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 0 (`d`) | Variable de control $d$ (LSB de selector). |
 | `btn_rst_n` | `G5` | **Dock F5** | Bottom, Pin 1 (`G5`) | Entrada | LVCMOS33 | Pull-up (`UP`) | Pulsador Reset (KEY1) | Reset asíncrono del sistema (activo en bajo, $0 = \text{Reset}$). |
