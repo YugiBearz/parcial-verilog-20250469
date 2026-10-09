@@ -12,6 +12,8 @@
 | 2026-10-07 | Antigravity AI | "Diseño de testbench exhaustivo y funciones de verificación dorada" | Creación del andamiaje base de tb_top_20250469.v con generador de reloj a 50 MHz y Golden Model | Inspección de funciones lógicas de referencia y tiempos de reloj |
 | 2026-10-07 | Antigravity AI | "Implementación del bucle de 4096 vectores de prueba exhaustivos" | Adición de tarea de prueba con barrido exhaustivo 16x16x16 verificando u, v, Y, flag_comb, Q y flag_q | Supervisión de condiciones de flanco de reloj y tolerancias temporales |
 | 2026-10-07 | Antigravity AI | "Casos temporales de esquina, VCD y automatización Makefile" | Adición de 12 pruebas de esquina temporales, volcado VCD, script Makefile y ejecución exitosa de simulación | Ejecución de make check y validación de 0 fallos |
+| 2026-10-08 | Antigravity AI | "Implementación de sincronizador de dos etapas contra metaestabilidad" | Creación de sync2ff.v parametrizable para mitigar metaestabilidad en entradas físicas de FPGA | Revisión de estructura de biestables en cascada y análisis de linter Verilator |
+
 
 
 
