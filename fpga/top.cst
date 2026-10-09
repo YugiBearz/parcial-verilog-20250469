@@ -18,52 +18,52 @@ IO_PORT "btn_rst_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
 IO_LOC "btn_en" F5;
 IO_PORT "btn_en" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
-// Switches de control: sw_ctrl[3:0] = {a, b, c, d} (Dock F5 Pins 1..4)
-IO_LOC "sw_ctrl[3]" H8;
+// Switches de control: sw_ctrl[3:0] = {a, b, c, d} (Dock F5)
+IO_LOC "sw_ctrl[3]" H5;
 IO_PORT "sw_ctrl[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
-IO_LOC "sw_ctrl[2]" H7;
+IO_LOC "sw_ctrl[2]" H8;
 IO_PORT "sw_ctrl[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 IO_LOC "sw_ctrl[1]" G7;
 IO_PORT "sw_ctrl[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 IO_LOC "sw_ctrl[0]" G8;
 IO_PORT "sw_ctrl[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
-// Switches de operando A[3:0] (Dock A11 Pins 1..4)
-IO_LOC "sw_A[3]" B11;
+// Switches de operando A[3:0] (Dock G11 Top Row)
+IO_LOC "sw_A[3]" C11;
 IO_PORT "sw_A[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
-IO_LOC "sw_A[2]" B10;
+IO_LOC "sw_A[2]" B11;
 IO_PORT "sw_A[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 IO_LOC "sw_A[1]" D11;
 IO_PORT "sw_A[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
-IO_LOC "sw_A[0]" D10;
+IO_LOC "sw_A[0]" G11;
 IO_PORT "sw_A[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
-// Switches de operando B[3:0] (Dock A11 Pins 7..10)
-IO_LOC "sw_B[3]" C11;
+// Switches de operando B[3:0] (Dock G11 Bottom Row)
+IO_LOC "sw_B[3]" C10;
 IO_PORT "sw_B[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
-IO_LOC "sw_B[2]" C10;
+IO_LOC "sw_B[2]" B10;
 IO_PORT "sw_B[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
-IO_LOC "sw_B[1]" A11;
+IO_LOC "sw_B[1]" D10;
 IO_PORT "sw_B[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
-IO_LOC "sw_B[0]" A10;
+IO_LOC "sw_B[0]" G10;
 IO_PORT "sw_B[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
-// Salidas a LEDs: Resultado registrado Q[3:0] (Dock G11 Pins 1..4)
-IO_LOC "led_Q[3]" K11;
+// Salidas a LEDs: Resultado registrado Q[3:0] (Dock A11)
+IO_LOC "led_Q[3]" A11;
 IO_PORT "led_Q[3]" IO_TYPE=LVCMOS33 DRIVE=8;
-IO_LOC "led_Q[2]" L11;
+IO_LOC "led_Q[2]" E11;
 IO_PORT "led_Q[2]" IO_TYPE=LVCMOS33 DRIVE=8;
-IO_LOC "led_Q[1]" E11;
+IO_LOC "led_Q[1]" K11;
 IO_PORT "led_Q[1]" IO_TYPE=LVCMOS33 DRIVE=8;
-IO_LOC "led_Q[0]" E10;
+IO_LOC "led_Q[0]" L5;
 IO_PORT "led_Q[0]" IO_TYPE=LVCMOS33 DRIVE=8;
 
-// Salida a LED: Bandera registrada flag_q (Dock G11 Pin 7)
-IO_LOC "led_flag" G11;
+// Salida a LED: Bandera registrada flag_q (Dock A11)
+IO_LOC "led_flag" A10;
 IO_PORT "led_flag" IO_TYPE=LVCMOS33 DRIVE=8;
 
-// Salidas a LEDs: Señales de control u y v (Dock G11 Pins 8 y 9)
-IO_LOC "led_u" G10;
+// Salidas a LEDs: Señales de control u y v (Dock A11)
+IO_LOC "led_u" E10;
 IO_PORT "led_u" IO_TYPE=LVCMOS33 DRIVE=8;
-IO_LOC "led_v" L5;
+IO_LOC "led_v" L11;
 IO_PORT "led_v" IO_TYPE=LVCMOS33 DRIVE=8;

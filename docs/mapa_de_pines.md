@@ -19,37 +19,37 @@ Para garantizar la integridad de las señales y evitar estados indeterminados po
 
 ---
 
-## 2. Tabla de Asignación de Pines por Conector / Dock PMOD
+## 2. Tabla de Asignación de Pines por Conector / Dock PMOD (Según Serigrafía de la Placa)
 
-Las entradas y salidas del sistema se encuentran agrupadas físicamente en los tres conectores PMOD (2×6 pines) de la placa base (Dock) de la Sipeed Tang Primer 25K:
-- **Dock F5 (PMOD 2):** Switches de control `sw_ctrl[3:0]` (`a, b, c, d`) + 2 Pulsadores (`btn_rst_n` y `btn_en`).
-- **Dock A11 (PMOD 0):** Switches de datos `sw_A[3:0]` y `sw_B[3:0]`.
-- **Dock G11 (PMOD 1):** Salidas a LEDs `led_Q[3:0]`, `led_flag`, `led_u` y `led_v`.
+Las entradas y salidas del sistema se encuentran agrupadas físicamente en los tres conectores PMOD de la placa base (Dock) de la Sipeed Tang Primer 25K:
+- **Dock F5:** Switches de control `sw_ctrl[3:0]` (`a, b, c, d`) + 2 Pulsadores (`btn_rst_n` y `btn_en`).
+- **Dock G11:** Switches de datos de entrada: Operando `sw_A[3:0]` (Fila superior) y Operando `sw_B[3:0]` (Fila inferior).
+- **Dock A11:** Salidas a LEDs: `led_Q[3:0]`, `led_flag`, `led_u` y `led_v`.
 
-| Puerto RTL | Pin Físico | Conector Dock | Pin Header | Dirección | Estándar I/O | Polarización / Drive | Componente Externo / Placa | Descripción Funcional |
+| Puerto RTL | Pin Físico | Conector Dock | Posición Fila / Serigrafía | Dirección | Estándar I/O | Polarización / Drive | Componente Externo / Placa | Descripción Funcional |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- | :--- | :--- |
 | `sys_clk` | `E2` | Onboard | N/A | Entrada | LVCMOS33 | Ninguna | Cristal Oscilador 50 MHz | Señal de reloj maestra del sistema (periodo 20.0 ns). |
-| `sw_ctrl[3]` | `H8` | **Dock F5** | Pin 1 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-4 (`a`) | Variable de control $a$ (MSB de selector). |
-| `sw_ctrl[2]` | `H7` | **Dock F5** | Pin 2 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-3 (`b`) | Variable de control $b$. |
-| `sw_ctrl[1]` | `G7` | **Dock F5** | Pin 3 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-2 (`c`) | Variable de control $c$. |
-| `sw_ctrl[0]` | `G8` | **Dock F5** | Pin 4 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-1 (`d`) | Variable de control $d$ (LSB de selector). |
-| `btn_rst_n` | `G5` | **Dock F5** | Pin 8 | Entrada | LVCMOS33 | Pull-up (`UP`) | Pulsador Reset (KEY1) | Reset asíncrono del sistema (activo en bajo, $0 = \text{Reset}$). |
-| `btn_en` | `F5` | **Dock F5** | Pin 7 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | Pulsador / Switch Enable (KEY2) | Habilitador de captura del registro (nivel alto). |
-| `sw_A[3]` | `B11` | **Dock A11** | Pin 1 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-4 ($A_3$) | Bit 3 del operando A (MSB). |
-| `sw_A[2]` | `B10` | **Dock A11** | Pin 2 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-3 ($A_2$) | Bit 2 del operando A. |
-| `sw_A[1]` | `D11` | **Dock A11** | Pin 3 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-2 ($A_1$) | Bit 1 del operando A. |
-| `sw_A[0]` | `D10` | **Dock A11** | Pin 4 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-1 ($A_0$) | Bit 0 del operando A (LSB). |
-| `sw_B[3]` | `C11` | **Dock A11** | Pin 7 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-4 ($B_3$) | Bit 3 del operando B (MSB). |
-| `sw_B[2]` | `C10` | **Dock A11** | Pin 8 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-3 ($B_2$) | Bit 2 del operando B. |
-| `sw_B[1]` | `A11` | **Dock A11** | Pin 9 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-2 ($B_1$) | Bit 1 del operando B. |
-| `sw_B[0]` | `A10` | **Dock A11** | Pin 10 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_B-1 ($B_0$) | Bit 0 del operando B (LSB). |
-| `led_Q[3]` | `K11` | **Dock G11** | Pin 1 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q3 | Bit 3 del resultado registrado $Q$. |
-| `led_Q[2]` | `L11` | **Dock G11** | Pin 2 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q2 | Bit 2 del resultado registrado $Q$. |
-| `led_Q[1]` | `E11` | **Dock G11** | Pin 3 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q1 | Bit 1 del resultado registrado $Q$. |
-| `led_Q[0]` | `E10` | **Dock G11** | Pin 4 | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q0 | Bit 0 del resultado registrado $Q$. |
-| `led_flag` | `G11` | **Dock G11** | Pin 7 | Salida | LVCMOS33 | Drive 8mA | Diodo LED FLAG | Bandera registrada de la operación activa. |
-| `led_u` | `G10` | **Dock G11** | Pin 8 | Salida | LVCMOS33 | Drive 8mA | Diodo LED U | Indicador en tiempo real de señal de control $u$. |
-| `led_v` | `L5` | **Dock G11** | Pin 9 | Salida | LVCMOS33 | Drive 8mA | Diodo LED V | Indicador en tiempo real de señal de control $v$. |
+| `sw_ctrl[3]` | `H5` | **Dock F5** | Top, Pin 4 (`H5`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 3 (`a`) | Variable de control $a$ (MSB de selector). |
+| `sw_ctrl[2]` | `H8` | **Dock F5** | Top, Pin 3 (`H8`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 2 (`b`) | Variable de control $b$. |
+| `sw_ctrl[1]` | `G7` | **Dock F5** | Top, Pin 2 (`G7`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 1 (`c`) | Variable de control $c$. |
+| `sw_ctrl[0]` | `G8` | **Dock F5** | Bottom, Pin 2 (`G8`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch Control bit 0 (`d`) | Variable de control $d$ (LSB de selector). |
+| `btn_rst_n` | `G5` | **Dock F5** | Bottom, Pin 1 (`G5`) | Entrada | LVCMOS33 | Pull-up (`UP`) | Pulsador Reset (KEY1) | Reset asíncrono del sistema (activo en bajo, $0 = \text{Reset}$). |
+| `btn_en` | `F5` | **Dock F5** | Top, Pin 1 (`F5`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | Pulsador / Switch Enable (KEY2) | Habilitador de captura del registro (nivel alto). |
+| `sw_A[3]` | `C11` | **Dock G11** | Top, Pin 4 (`C11`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch A bit 3 ($A_3$) | Bit 3 del operando A (MSB). |
+| `sw_A[2]` | `B11` | **Dock G11** | Top, Pin 3 (`B11`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch A bit 2 ($A_2$) | Bit 2 del operando A. |
+| `sw_A[1]` | `D11` | **Dock G11** | Top, Pin 2 (`D11`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch A bit 1 ($A_1$) | Bit 1 del operando A. |
+| `sw_A[0]` | `G11` | **Dock G11** | Top, Pin 1 (`G11`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch A bit 0 ($A_0$) | Bit 0 del operando A (LSB). |
+| `sw_B[3]` | `C10` | **Dock G11** | Bottom, Pin 4 (`C10`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch B bit 3 ($B_3$) | Bit 3 del operando B (MSB). |
+| `sw_B[2]` | `B10` | **Dock G11** | Bottom, Pin 3 (`B10`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch B bit 2 ($B_2$) | Bit 2 del operando B. |
+| `sw_B[1]` | `D10` | **Dock G11** | Bottom, Pin 2 (`D10`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch B bit 1 ($B_1$) | Bit 1 del operando B. |
+| `sw_B[0]` | `G10` | **Dock G11** | Bottom, Pin 1 (`G10`) | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch B bit 0 ($B_0$) | Bit 0 del operando B (LSB). |
+| `led_Q[3]` | `A11` | **Dock A11** | Top, Pin 1 (`A11`) | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q3 | Bit 3 del resultado registrado $Q$. |
+| `led_Q[2]` | `E11` | **Dock A11** | Top, Pin 2 (`E11`) | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q2 | Bit 2 del resultado registrado $Q$. |
+| `led_Q[1]` | `K11` | **Dock A11** | Top, Pin 3 (`K11`) | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q1 | Bit 1 del resultado registrado $Q$. |
+| `led_Q[0]` | `L5` | **Dock A11** | Top, Pin 4 (`L5`) | Salida | LVCMOS33 | Drive 8mA | Diodo LED Q0 | Bit 0 del resultado registrado $Q$. |
+| `led_flag` | `A10` | **Dock A11** | Bottom, Pin 1 (`A10`) | Salida | LVCMOS33 | Drive 8mA | Diodo LED FLAG | Bandera registrada de la operación activa. |
+| `led_u` | `E10` | **Dock A11** | Bottom, Pin 2 (`E10`) | Salida | LVCMOS33 | Drive 8mA | Diodo LED U | Indicador en tiempo real de señal de control $u$. |
+| `led_v` | `L11` | **Dock A11** | Bottom, Pin 3 (`L11`) | Salida | LVCMOS33 | Drive 8mA | Diodo LED V | Indicador en tiempo real de señal de control $v$. |
 
 ---
 
