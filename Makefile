@@ -8,6 +8,7 @@ IVERILOG = iverilog
 VVP      = vvp
 VERILATOR= verilator
 GTKWAVE  = gtkwave
+GOWIN_SH = gw_sh
 
 RTL_SRCS = src/control_logic.v \
            src/datapath.v \
@@ -24,7 +25,7 @@ SIM_BIN  = $(SIM_DIR)/sim_top_20250469
 SIM_SYNC = $(SIM_DIR)/sim_sync2ff
 VCD_FILE = $(SIM_DIR)/top_20250469.vcd
 
-.PHONY: all check check-sync compile run wave lint clean
+.PHONY: all check check-sync compile run wave lint fpga clean
 
 all: check
 
@@ -55,6 +56,12 @@ wave: run
 
 lint:
 	$(VERILATOR) --lint-only -Wall $(RTL_SRCS) $(TB_SRCS)
+
+fpga:
+	@echo "===================================================================="
+	@echo "Ejecutando sintesis y generacion de bitstream con Gowin EDA..."
+	@echo "===================================================================="
+	cd fpga && $(GOWIN_SH) run_gowin.tcl
 
 clean:
 	rm -rf $(SIM_DIR)/*.vvp $(SIM_DIR)/*.vcd $(SIM_DIR)/sim_top_* $(SIM_DIR)/sim_sync* build/*
