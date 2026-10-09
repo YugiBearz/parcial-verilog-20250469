@@ -20,6 +20,8 @@
 | 2026-10-09 | Antigravity AI | "Asignación de restricciones físicas CST y mapa de pines" | Creación de fpga/top.cst y docs/mapa_de_pines.md con pinout para oscilador 50 MHz, switches, botones y LEDs | Verificación de estándares LVCMOS33 y pull-modes en datasheet Tang Primer 25K |
 | 2026-10-09 | Antigravity AI | "Definición de restricciones de temporización SDC" | Creación de fpga/top.sdc con reloj de 50 MHz (20 ns), márgenes de incertidumbre y retardos de E/S | Verificación de sintaxis SDC para Gowin EDA y cumplimiento de 50 MHz |
 | 2026-10-09 | Antigravity AI | "Automatización de síntesis Gowin mediante script Tcl" | Creación de fpga/run_gowin.tcl y regla make fpga para compilación y generación de bitstream en modo batch | Verificación de parámetros de dispositivo GW5A-LV25MG121 |
+| 2026-10-09 | Antigravity AI | "Redacción de guía de implementación física y programación Gowin" | Creación de docs/guia_gowin_eda.md documentando flujo de síntesis, P&R, uso de recursos y programación JTAG | Verificación de parámetros de empaquetado MBGA121 y modos de configuración |
+
 
 
 
