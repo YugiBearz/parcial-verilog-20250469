@@ -26,6 +26,7 @@
 | 2026-10-09 | Antigravity AI | "Ajuste de pines de pulsadores a G5 y F5 en Dock F5" | Actualización de btn_rst_n a pin G5 y btn_en a pin F5 en fpga/top.cst y mapa de pines | Verificación de reglas make check y make lint limpias |
 | 2026-10-09 | Antigravity AI | "Calibración exacta de pines con serigrafía física de la placa" | Alineación de fpga/top.cst y mapa_de_pines.md con la serigrafía real de Docks F5, G11 y A11 leída del hardware | Verificación exhaustiva de 4096 vectores y linter Verilator al 100% |
 | 2026-10-09 | Antigravity AI | "Alineación de switches de control {a,b,c,d} a {H8,H7,G7,G8} en Dock F5" | Configuración precisa de sw_ctrl[3:0] y botones {F5,G5} según imagen de serigrafía | Verificación de 4096 vectores y linter Verilator al 100% |
+| 2026-10-09 | Antigravity AI | "Integración de tareas de VS Code y proyecto oficial Gowin" | Creación de .vscode/tasks.json para ejecución con un clic y parcial_reto14_20250469.gprj | Verificación de flujo automatizado de compilación y carga |
 
 
 

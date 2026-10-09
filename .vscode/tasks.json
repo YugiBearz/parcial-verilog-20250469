@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "1. Verilog: Testbench & Lint",
+            "type": "shell",
+            "command": "make check && make lint",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "2. FPGA: Build Bitstream",
+            "type": "shell",
+            "command": "cd fpga && /opt/gowin-eda-edu-ide/bin/gw_sh run_gowin.tcl",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "3. FPGA: Upload to Board (SRAM)",
+            "type": "shell",
+            "command": "openFPGALoader -b tangprimer25k fpga/impl/pnr/tang_top_20250469.fs",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "4. FPGA: Flash to Board (Permanent)",
+            "type": "shell",
+            "command": "openFPGALoader -b tangprimer25k -f fpga/impl/pnr/tang_top_20250469.fs",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
