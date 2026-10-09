@@ -17,6 +17,8 @@
 | 2026-10-08 | Antigravity AI | "Definición de puertos e interfaz física de tang_top_20250469" | Especificación de puertos físicos para Tang Primer 25K con inversión de pulsador activo en bajo y cableado interno | Validación de polaridades y nomenclatura de pines |
 | 2026-10-08 | Antigravity AI | "Integración de sincronizadores 2FF y núcleo top en adaptador físico" | Conexión de 8 instancias sync2ff para 13 canales de entrada asíncrona hacia top_20250469 y mapeo a LEDs | Verificación de jerarquía estructural completa con linter Verilator |
 | 2026-10-08 | Antigravity AI | "Reorganización de estructura de directorios según especificación oficial" | Migración a src/, sim/, fpga/, evidencias/ con actualización de Makefile y plantilla de evidencias | Validación de árbol de directorios con el mandato oficial del profesor |
+| 2026-10-09 | Antigravity AI | "Asignación de restricciones físicas CST y mapa de pines" | Creación de fpga/top.cst y docs/mapa_de_pines.md con pinout para oscilador 50 MHz, switches, botones y LEDs | Verificación de estándares LVCMOS33 y pull-modes en datasheet Tang Primer 25K |
+
 
 
 

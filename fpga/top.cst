@@ -1,0 +1,69 @@
+// ============================================================================
+// Asignatura: Sistemas Digitales con FPGA (ITLA)
+// Estudiante: Urik Camilo Valenzuela Flynn · Matricula: 20250469
+// Reto 14: Procesador de Verificacion
+// Tarjeta: Sipeed Tang Primer 25K (Gowin GW5A-LV25MG121)
+// Archivo: top.cst (Gowin Physical Constraints)
+// ============================================================================
+
+// Reloj maestro de 50 MHz (Pin E2)
+IO_LOC "sys_clk" E2;
+IO_PORT "sys_clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+
+// Pulsador de Reset (Activo en bajo, Pull-up interno)
+IO_LOC "btn_rst_n" H11;
+IO_PORT "btn_rst_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// Pulsador / Switch de Enable
+IO_LOC "btn_en" H10;
+IO_PORT "btn_en" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+
+// Switches de control: sw_ctrl[3:0] = {a, b, c, d}
+IO_LOC "sw_ctrl[3]" K5;
+IO_PORT "sw_ctrl[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_ctrl[2]" L5;
+IO_PORT "sw_ctrl[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_ctrl[1]" J5;
+IO_PORT "sw_ctrl[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_ctrl[0]" G5;
+IO_PORT "sw_ctrl[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+
+// Switches de operando A[3:0]
+IO_LOC "sw_A[3]" F5;
+IO_PORT "sw_A[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_A[2]" G7;
+IO_PORT "sw_A[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_A[1]" F7;
+IO_PORT "sw_A[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_A[0]" D7;
+IO_PORT "sw_A[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+
+// Switches de operando B[3:0]
+IO_LOC "sw_B[3]" E8;
+IO_PORT "sw_B[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_B[2]" D8;
+IO_PORT "sw_B[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_B[1]" C8;
+IO_PORT "sw_B[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "sw_B[0]" B8;
+IO_PORT "sw_B[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+
+// Salidas a LEDs: Resultado registrado Q[3:0]
+IO_LOC "led_Q[3]" L10;
+IO_PORT "led_Q[3]" IO_TYPE=LVCMOS33 DRIVE=8;
+IO_LOC "led_Q[2]" K10;
+IO_PORT "led_Q[2]" IO_TYPE=LVCMOS33 DRIVE=8;
+IO_LOC "led_Q[1]" J11;
+IO_PORT "led_Q[1]" IO_TYPE=LVCMOS33 DRIVE=8;
+IO_LOC "led_Q[0]" G11;
+IO_PORT "led_Q[0]" IO_TYPE=LVCMOS33 DRIVE=8;
+
+// Salida a LED: Bandera registrada flag_q
+IO_LOC "led_flag" L11;
+IO_PORT "led_flag" IO_TYPE=LVCMOS33 DRIVE=8;
+
+// Salidas a LEDs: Señales de control u y v
+IO_LOC "led_u" K11;
+IO_PORT "led_u" IO_TYPE=LVCMOS33 DRIVE=8;
+IO_LOC "led_v" E10;
+IO_PORT "led_v" IO_TYPE=LVCMOS33 DRIVE=8;
