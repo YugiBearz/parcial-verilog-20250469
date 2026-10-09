@@ -10,12 +10,12 @@
 IO_LOC "sys_clk" E2;
 IO_PORT "sys_clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
 
-// Pulsador de Reset (Activo en bajo, Pull-up interno, Dock F5 Pin 7)
-IO_LOC "btn_rst_n" H5;
+// Pulsador de Reset (Activo en bajo, Pull-up interno, Dock F5)
+IO_LOC "btn_rst_n" G5;
 IO_PORT "btn_rst_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
 
-// Pulsador / Switch de Enable (Dock F5 Pin 8)
-IO_LOC "btn_en" J5;
+// Pulsador / Switch de Enable (Dock F5)
+IO_LOC "btn_en" F5;
 IO_PORT "btn_en" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
 
 // Switches de control: sw_ctrl[3:0] = {a, b, c, d} (Dock F5 Pins 1..4)

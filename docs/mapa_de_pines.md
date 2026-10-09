@@ -33,8 +33,8 @@ Las entradas y salidas del sistema se encuentran agrupadas físicamente en los t
 | `sw_ctrl[2]` | `H7` | **Dock F5** | Pin 2 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-3 (`b`) | Variable de control $b$. |
 | `sw_ctrl[1]` | `G7` | **Dock F5** | Pin 3 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-2 (`c`) | Variable de control $c$. |
 | `sw_ctrl[0]` | `G8` | **Dock F5** | Pin 4 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_CTRL-1 (`d`) | Variable de control $d$ (LSB de selector). |
-| `btn_rst_n` | `H5` | **Dock F5** | Pin 7 | Entrada | LVCMOS33 | Pull-up (`UP`) | Pulsador Reset (KEY1) | Reset asíncrono del sistema (activo en bajo, $0 = \text{Reset}$). |
-| `btn_en` | `J5` | **Dock F5** | Pin 8 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | Pulsador / Switch Enable (KEY2) | Habilitador de captura del registro (nivel alto). |
+| `btn_rst_n` | `G5` | **Dock F5** | Pin 8 | Entrada | LVCMOS33 | Pull-up (`UP`) | Pulsador Reset (KEY1) | Reset asíncrono del sistema (activo en bajo, $0 = \text{Reset}$). |
+| `btn_en` | `F5` | **Dock F5** | Pin 7 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | Pulsador / Switch Enable (KEY2) | Habilitador de captura del registro (nivel alto). |
 | `sw_A[3]` | `B11` | **Dock A11** | Pin 1 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-4 ($A_3$) | Bit 3 del operando A (MSB). |
 | `sw_A[2]` | `B10` | **Dock A11** | Pin 2 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-3 ($A_2$) | Bit 2 del operando A. |
 | `sw_A[1]` | `D11` | **Dock A11** | Pin 3 | Entrada | LVCMOS33 | Pull-down (`DOWN`) | DIP Switch SW_A-2 ($A_1$) | Bit 1 del operando A. |
