@@ -24,6 +24,8 @@ set_option -top_module tang_top_20250469
 # 4. Opciones de sintesis y optimizacion
 set_option -output_base_name tang_top_20250469
 set_option -verilog_std v2001
+set_option -use_cpu_as_gpio 1
+set_option -use_sspi_as_gpio 1
 
 # 5. Ejecutar flujo completo de implementacion
 run syn

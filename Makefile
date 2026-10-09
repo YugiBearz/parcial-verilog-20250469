@@ -57,11 +57,26 @@ wave: run
 lint:
 	$(VERILATOR) --lint-only -Wall --top-module tang_top_20250469 $(RTL_SRCS)
 
+GOWIN_ENV = LD_PRELOAD="/usr/lib/libstdc++.so.6 /opt/gowin-eda-edu-ide/lib/libQt5XcbQpa.so.5"
+BITSTREAM = fpga/impl/pnr/tang_top_20250469.fs
+
 fpga:
 	@echo "===================================================================="
 	@echo "Ejecutando sintesis y generacion de bitstream con Gowin EDA..."
 	@echo "===================================================================="
-	cd fpga && $(GOWIN_SH) run_gowin.tcl
+	cd fpga && $(GOWIN_ENV) $(GOWIN_SH) run_gowin.tcl
+
+prog:
+	@echo "===================================================================="
+	@echo "Cargando bitstream en SRAM (prueba rapida)..."
+	@echo "===================================================================="
+	openFPGALoader -b tangprimer25k $(BITSTREAM)
+
+flash:
+	@echo "===================================================================="
+	@echo "Grabando bitstream en Flash (permanente)..."
+	@echo "===================================================================="
+	openFPGALoader -b tangprimer25k -f $(BITSTREAM)
 
 clean:
 	rm -rf $(SIM_DIR)/*.vvp $(SIM_DIR)/*.vcd $(SIM_DIR)/sim_top_* $(SIM_DIR)/sim_sync* build/*
