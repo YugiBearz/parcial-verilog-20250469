@@ -14,6 +14,8 @@
 | 2026-10-07 | Antigravity AI | "Casos temporales de esquina, VCD y automatización Makefile" | Adición de 12 pruebas de esquina temporales, volcado VCD, script Makefile y ejecución exitosa de simulación | Ejecución de make check y validación de 0 fallos |
 | 2026-10-08 | Antigravity AI | "Implementación de sincronizador de dos etapas contra metaestabilidad" | Creación de sync2ff.v parametrizable para mitigar metaestabilidad en entradas físicas de FPGA | Revisión de estructura de biestables en cascada y análisis de linter Verilator |
 | 2026-10-08 | Antigravity AI | "Verificación de latencia y propagación de sync2ff" | Creación y ejecución de tb_sync2ff.v confirmando latencia exacta de 2 ciclos e inmunidad asíncrona | Verificación de formas de onda y paso de pruebas unitarias |
+| 2026-10-08 | Antigravity AI | "Definición de puertos e interfaz física de tang_top_20250469" | Especificación de puertos físicos para Tang Primer 25K con inversión de pulsador activo en bajo y cableado interno | Validación de polaridades y nomenclatura de pines |
+
 
 
 
