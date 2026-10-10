@@ -18,7 +18,7 @@
         {
             "label": "2. FPGA: Build Bitstream",
             "type": "shell",
-            "command": "cd fpga && /opt/gowin-eda-edu-ide/bin/gw_sh run_gowin.tcl",
+            "command": "make fpga",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -32,7 +32,7 @@
         {
             "label": "3. FPGA: Upload to Board (SRAM)",
             "type": "shell",
-            "command": "openFPGALoader -b tangprimer25k fpga/impl/pnr/tang_top_20250469.fs",
+            "command": "make prog",
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
@@ -42,7 +42,7 @@
         {
             "label": "4. FPGA: Flash to Board (Permanent)",
             "type": "shell",
-            "command": "openFPGALoader -b tangprimer25k -f fpga/impl/pnr/tang_top_20250469.fs",
+            "command": "make flash",
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"

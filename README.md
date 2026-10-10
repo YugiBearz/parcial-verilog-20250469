@@ -50,7 +50,32 @@ Diseño, implementación, simulación y verificación en Verilog 2001 de una uni
 
 ### Instrucciones de Reproducción y Verificación
 
-El proyecto cuenta con un `Makefile` para facilitar la verificación completa de todos los entregables:
+El proyecto está completamente automatizado y puede ejecutarse tanto desde la terminal como directamente desde la interfaz gráfica de **VS Code / VSCodium**.
+
+---
+
+#### Opción A: Desde la Interfaz Gráfica de VS Code / VSCodium (Recomendado)
+
+El repositorio incluye la configuración oficial [`.vscode/tasks.json`](.vscode/tasks.json) que permite compilar, simular, sintetizar y programar con un solo clic o atajo de teclado:
+
+1. **Abrir el Menú de Tareas:**
+   * Presiona `Ctrl + Shift + P` (o `Cmd + Shift + P` en macOS) y escribe:  
+     `Tasks: Run Task` (o accede en el menú superior a **Terminal > Run Task...**).
+2. **Seleccionar la Acción Deseada:**
+   * **`1. Verilog: Testbench & Lint`** (`Ctrl + Shift + B` como tarea de prueba):  
+     Ejecuta la simulación completa de los 4,096 vectores, los 12 casos temporales y valida el diseño con el linter Verilator (-Wall).
+   * **`2. FPGA: Build Bitstream`** (`Ctrl + Shift + B` como compilación por defecto):  
+     Invoca el sintetizador de Gowin EDA en modo batch en segundo plano y genera el bitstream físico `fpga/impl/pnr/tang_top_20250469.fs`.
+   * **`3. FPGA: Upload to Board (SRAM)`**:  
+     Carga el bitstream a la memoria volátil SRAM de la Tang Primer 25K mediante `openFPGALoader` para pruebas rápidas en la placa.
+   * **`4. FPGA: Flash to Board (Permanent)`**:  
+     Graba el bitstream en la memoria SPI Flash integrada para que el diseño persista al desconectar la alimentación.
+
+---
+
+#### Opción B: Desde la Terminal Integrada (Makefile)
+
+Si prefieres ejecutar los comandos manualmente desde la terminal de Linux:
 
 1. **Ejecutar Verificación Exhaustiva (4096 vectores + 12 pruebas temporales):**
    ```bash
@@ -75,6 +100,16 @@ El proyecto cuenta con un `Makefile` para facilitar la verificación completa de
 5. **Compilar y Generar Bitstream para FPGA (Gowin EDA):**
    ```bash
    make fpga
+   ```
+
+6. **Cargar Bitstream a la Placa (SRAM volátil):**
+   ```bash
+   make prog
+   ```
+
+7. **Grabar Bitstream en la Placa (Flash permanente):**
+   ```bash
+   make flash
    ```
 
 ---
