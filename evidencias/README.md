@@ -9,22 +9,21 @@
 ---
 
 ### 1. Enlace a Video Demostrativo
-- **Plataforma:** YouTube / Google Drive / Loom
-- **Enlace:** `[INSERTAR_ENLACE_AQUI]`
-- **Descripción:** Demostración del funcionamiento en tiempo real sobre la tarjeta Tang Primer 25K, verificando:
-  1. Estado inicial tras reset mediante pulsador `btn_rst_n`.
-  2. Operación **XOR** (`{v, u} = 00`) con paridad impar en `led_flag`.
-  3. Operación **SUMA** (`{v, u} = 01`) con acarreo en `led_flag`.
+- **Plataforma:** YouTube
+- **Enlace:** [https://youtu.be/Fu_dqSa0cHM](https://youtu.be/Fu_dqSa0cHM)
+- **Descripción:** Demostración del funcionamiento en tiempo real sobre la tarjeta Tang Primer 25K montada en protoboard, verificando:
+  1. Estado inicial tras reset mediante switch/pulsador `btn_rst_n`.
+  2. Operación **SUMA** (`{v, u} = 01`) con acarreo en `led_flag`.
+  3. Operación **RESTA** (`{v, u} = 11`) con préstamo en `led_flag`.
   4. Operación **MAYOR** (`{v, u} = 10`) con bandera de igualdad en `led_flag`.
-  5. Operación **RESTA** (`{v, u} = 11`) con préstamo en `led_flag`.
-  6. Función del habilitador `btn_en` congelando y actualizando el registro `Q`.
+  5. Operación **XOR** (`{v, u} = 00`) con paridad impar en `led_flag`.
+  6. Función del habilitador `btn_en` congelando y actualizando el registro de salida $Q[3:0]$.
+  7. Comprobación de prioridad del reset asíncrono sobre la señal de enable.
 
 ---
 
 ### 2. Registro Fotográfico del Montaje
-*(Adjuntar fotografías de la tarjeta Tang Primer 25K conectada y los LEDs encendidos según los casos de prueba).*
-
-- **Foto 1: Placa Tang Primer 25K conectada y programada**
-  - Ubicación: `evidencias/foto_placa_montaje.jpg`
-- **Foto 2: Ejecución de operación con indicador LED activo**
-  - Ubicación: `evidencias/foto_operacion_leds.jpg`
+- **Montaje físico de la tarjeta Tang Primer 25K y protoboard con conexionado de switches, botones y LEDs:**
+  - Archivo: `evidencias/foto_placa_montaje.png`
+  
+![Montaje Físico](foto_placa_montaje.png)

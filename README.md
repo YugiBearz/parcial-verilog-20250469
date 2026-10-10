@@ -85,4 +85,6 @@ El proyecto cuenta con un `Makefile` para facilitar la verificación completa de
 - **Pruebas de Sincronizador 2FF:** Inmunidad asíncrona y latencia de 2 ciclos (**100% PASS**).
 - **Linter Verilator (-Wall):** 0 errores, 0 advertencias.
 - **Reloj del Sistema:** 50 MHz (Periodo = 20.0 ns, SDC verificado).
+- **Video Demostrativo en YouTube:** [https://youtu.be/Fu_dqSa0cHM](https://youtu.be/Fu_dqSa0cHM)
+- **Evidencias y Fotografía:** [evidencias/README.md](evidencias/README.md)
 - **Versión Oficial Evaluada:** Etiqueta Git `v1.0-entrega`.
