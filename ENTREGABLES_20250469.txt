@@ -1,0 +1,106 @@
+================================================================================
+INSTITUTO TECNOLOGICO DE LAS AMERICAS (ITLA)
+CARRERA: TECNOLOGO EN DESARROLLO DE SOFTWARE / SISTEMAS ELECTRONICOS
+ASIGNATURA: SISTEMAS DIGITALES CON FPGA
+DOCENTE: PROF. WILKINS GABRIEL CEDANO DEL ROSARIO
+================================================================================
+PRIMER PARCIAL — RETO 14: PROCESADOR DE VERIFICACION
+ESTUDIANTE: URIK CAMILO VALENZUELA FLYNN
+MATRICULA: 20250469
+CORREO INSTITUCIONAL: 20250469@itla.edu.do
+FECHA DE ENTREGA: 9 DE OCTUBRE DE 2026
+PLACA FPGA: SIPEED TANG PRIMER 25K (GOWIN GW5A-LV25MG121)
+================================================================================
+
+1. ENLACES OFICIALES DE ENTREGA
+--------------------------------------------------------------------------------
+* Repositorio en GitHub:
+  https://github.com/YugiBearz/parcial-verilog-20250469
+
+* Version Etiquetada Oficial (Release v1.0-entrega):
+  https://github.com/YugiBearz/parcial-verilog-20250469/releases/tag/v1.0-entrega
+
+* Hash del Commit Evaluable:
+  a476924a1825c58502c6371534b0ec316669b846 (Rama 'main')
+
+* Video Demostrativo en YouTube:
+  https://youtu.be/Fu_dqSa0cHM
+
+
+2. ESTRUCTURA Y CUMPLIMIENTO DE ENTREGABLES EXIGIDOS
+--------------------------------------------------------------------------------
+El repositorio contiene la totalidad de los archivos solicitados segun la
+estructura estandar de entrega:
+
+[src/] - Modulos RTL en Verilog 2001:
+  - control_logic.v    : Decodificador combinacional con ecuaciones minimas SOP
+                         obtenidas por Karnaugh (u = ab + ac + ~c*d; v = ~a*b + b*d + c*~d).
+  - datapath.v         : ALU combinacional de 4 bits (XOR, SUMA, MAYOR, RESTA)
+                         con banderas de paridad, acarreo, igualdad y prestamo.
+  - result_register.v  : Registro sincrono de 5 bits a 50 MHz con enable de nivel
+                         y reset asincrono prioritario.
+  - top_20250469.v     : Modulo integrador superior para simulacion y testbench.
+  - sync2ff.v          : Sincronizador de 2 biestables (2FF) contra metaestabilidad
+                         (8 instancias para 13 entradas mecanicas).
+  - tang_top_20250469.v: Modulo superior de integracion fisica para la Tang Primer 25K.
+
+[sim/] - Bancos de Prueba y Verificacion:
+  - tb_top_20250469.v  : Testbench exhaustivo de 4,096 vectores combinacionales
+                         y 12 pruebas temporales de esquina (0 errores, 100% PASS).
+  - tb_sync2ff.v       : Testbench unitario de sincronizador 2FF con analisis temporal.
+
+[fpga/] - Restricciones Fisicas y Gowin EDA:
+  - top.cst            : Archivo de restricciones fisicas con asignacion de los 21 GPIO
+                         en conectores PMOD Dock F5, G11 y A11 segun serigrafia real.
+  - top.sdc            : Restricciones de temporizacion para reloj de 50 MHz (20.0 ns).
+  - run_gowin.tcl      : Script TCL automatizado para sintesis y P&R en modo batch.
+  - tang_top_20250469.fs: Bitstream sintetizado y verificado fisicamente en hardware.
+  - parcial_reto14_20250469.gprj: Archivo de proyecto oficial de Gowin EDA.
+
+[docs/] - Informes Tecnicos y Teoria:
+  - analisis_karnaugh.md: Tabla de verdad (16 estados), 2 mapas de Karnaugh,
+                          agrupaciones y justificacion teorica de terminos minimos.
+  - mapa_de_pines.md   : Tabla completa de pines GPIO, estandares LVCMOS33,
+                          polaridades y modos de pull-up/pull-down internos.
+  - guia_gowin_eda.md  : Manual de compilacion, sintesis y programacion SRAM y Flash.
+
+[evidencias/] - Evidencias Fisicas:
+  - README.md          : Documento con enlace al video de YouTube y descripcion de pruebas.
+  - foto_placa_montaje.png: Fotografia de alta resolucion del montaje en protoboard.
+
+[AI_LOG.md] - Bitacora de Asistencia por IA:
+  - Registro cronologico de todas las solicitudes, justificaciones y validaciones.
+
+[Makefile] y [.vscode/tasks.json]:
+  - Automatizacion completa para ejecucion por linea de comandos y con un clic en VS Code.
+
+
+3. INSTRUCCIONES DE REPRODUCCION Y VERIFICACION
+--------------------------------------------------------------------------------
+
+A. Desde VS Code / VSCodium (Interfaz Grafica):
+   Presionar Ctrl + Shift + P -> escribir "Tasks: Run Task":
+   1. "1. Verilog: Testbench & Lint" : Ejecuta simulacion completa y Verilator lint.
+   2. "2. FPGA: Build Bitstream"     : Sintetiza en Gowin EDA y genera el archivo .fs.
+   3. "3. FPGA: Upload to Board (SRAM)": Carga inmediata a la FPGA por JTAG.
+   4. "4. FPGA: Flash to Board (Permanent)": Graba permanentemente en memoria SPI Flash.
+
+B. Desde Terminal Linux (CLI):
+   $ make check       # Ejecuta 4096 vectores + 12 casos temporales (0 errores)
+   $ make check-sync  # Verifica modulo de sincronizacion 2FF
+   $ make lint        # Valida reglas de linter con Verilator (-Wall)
+   $ make fpga        # Sintesis y P&R con Gowin EDA (genera bitstream .fs)
+   $ make prog        # Carga bitstream a memoria SRAM
+   $ make flash       # Graba bitstream permanente en SPI Flash
+
+
+4. RESUMEN DE METRICAS DE VERIFICACION
+--------------------------------------------------------------------------------
+- Vectores Combinacionales : 4,096 / 4,096 probados (0 errores - 100% PASS)
+- Pruebas Temporales        : 12 / 12 comprobaciones de esquina (0 errores - 100% PASS)
+- Linter Verilator (-Wall) : 0 errores, 0 advertencias
+- Frecuencia de Operacion  : 50.00 MHz (Periodo = 20.0 ns, restriccion SDC cumplida)
+- Verificacion Fisica      : 16/16 combinaciones de control probadas en protoboard
+- Banderas Demostradas     : Acarreo (SUMA), Prestamo (RESTA), Igualdad (MAYOR), Paridad (XOR)
+- Version Evaluada         : Etiqueta Git v1.0-entrega (Commit a476924)
+================================================================================
