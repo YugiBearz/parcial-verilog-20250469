@@ -27,17 +27,4 @@
 | 2026-10-09 | Antigravity AI | "Calibración exacta de pines con serigrafía física de la placa" | Alineación de fpga/top.cst y mapa_de_pines.md con la serigrafía real de Docks F5, G11 y A11 leída del hardware | Verificación exhaustiva de 4096 vectores y linter Verilator al 100% |
 | 2026-10-09 | Antigravity AI | "Alineación de switches de control {a,b,c,d} a {H8,H7,G7,G8} en Dock F5" | Configuración precisa de sw_ctrl[3:0] y botones {F5,G5} según imagen de serigrafía | Verificación de 4096 vectores y linter Verilator al 100% |
 | 2026-10-09 | Antigravity AI | "Integración de tareas de VS Code y proyecto oficial Gowin" | Creación de .vscode/tasks.json para ejecución con un clic y parcial_reto14_20250469.gprj | Verificación de flujo automatizado de compilación y carga |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| 2026-10-09 | Antigravity AI | "Verificación física en protoboard, flasheo en SPI Flash y depuración de E/S" | Prueba física de 16/16 combinaciones de control, operación de SUMA (3+2=5), RESTA con préstamo (FLAG azul), validación de Enable y Reset, y grabación permanente en Flash (make flash) | Comprobación física 100% exitosa en Tang Primer 25K |
